@@ -1,7 +1,11 @@
 package com.example.teamproject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +26,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -50,10 +55,82 @@ import org.xml.sax.InputSource;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView;
+
+    HashMap<String, Double> la = new HashMap<String, Double>();//위도
+    HashMap<String, Double> lo = new HashMap<String ,Double>();//경도
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //공항 좌표값 할당
+        la.put("AMS",4.7674241);
+        lo.put("AMS",52.3076865);
+        la.put("KTM",27.6967);
+        lo.put("KTM",85.3592);
+        la.put("OSL",60.197552);
+        lo.put("OSL",11.100415);
+        la.put("NOU",-22.2558234);
+        lo.put("NOU",166.4505243);
+        la.put("AKL",-37.0048 );
+        lo.put("AKL",174.7883);
+        lo.put("KHH",120.2033);
+        la.put("KHH",22.3438);
+        la.put("TPE",-25.076068);
+        lo.put("TPE",121.231625);
+        la.put("CPH",-55.620750);
+        lo.put("CPH",12.650462);
+        la.put("MUC",48.3536621 );
+        lo.put("MUC",11.775027899999941);
+        la.put("CGN",50.8595  );
+        lo.put("CGN",7.1390);
+        la.put("FRA",50.033333  );
+        lo.put("FRA",8.570556);
+        la.put("VTE",17.9863   );
+        lo.put("VTE",102.5580);
+        la.put("OVB",55.0045   );
+        lo.put("OVB",82.3902);
+        la.put("SVO",55.9703    );
+        lo.put("SVO",37.4088);
+        la.put("VVO",43.2357);
+        lo.put("VVO",132.0905);
+        la.put("BEY",33.8193 );
+        lo.put("BEY",35.4863);
+        la.put("LUX",49.628899 );
+        lo.put("LUX",6.214745);
+        la.put("ULN",47.8392  );
+        lo.put("ULN",106.7598);
+        la.put("GUM",13.48340034  );
+        lo.put("GUM",144.7960052);
+        la.put("JFK",40.641766  );
+        lo.put("JFK",-73.780968);
+        la.put("EWR",40.6895314);
+        lo.put("EWR",-74.17446239999998);
+        la.put("LAS",36.086010);
+        lo.put("LAS",-115.153969);
+        la.put("LAX",33.942791);
+        lo.put("LAX",-118.410042);
+        la.put("MIA",25.7933 );
+        lo.put("MIA",-80.2906);
+        la.put("IAD",38.9531162  );
+        lo.put("IAD",-77.45653879999998);
+        la.put("SIN",1.359167  );
+        lo.put("SIN",103.989441);
+        la.put("DXB",25.252777  );
+        lo.put("DXB",55.364445);
+        la.put("BOM",19.097403  );
+        lo.put("BOM",72.874245);
+
+        la.put("TAE",37.463333  );
+        lo.put("TAE",126.440002);
+        la.put("PUS",35.1743);
+        lo.put("PUS",128.9363);
+        la.put("GMP",37.5575 );
+        lo.put("GMP",126.8005);
+        la.put("CJU",33.5068  );
+        lo.put("CJU",126.4892);
 
         final SwipeRefreshLayout swipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.swip_layout);
         textView = (TextView)findViewById(R.id.textView);
@@ -78,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
         task.execute(api);
     }
+
+
 
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         @Override
@@ -193,4 +272,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }// class DownloadWebpageTask
+
+    public void showMap(View view) {
+        Button b = (Button)view;
+        String code = b.getText().toString();
+        double longitude = lo.get(code);
+        double latitude = la.get(code);
+        int zoom = 10;
+        String pos = String.format("geo:%f,%f?z=%d", latitude, longitude, zoom);
+        Uri geo = Uri.parse(pos);
+        Intent intent = new Intent(Intent.ACTION_VIEW, geo);
+        startActivity(intent);
+
+    }
 }
