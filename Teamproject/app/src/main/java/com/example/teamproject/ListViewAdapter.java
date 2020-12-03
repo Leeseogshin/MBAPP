@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -76,6 +77,26 @@ public class ListViewAdapter extends BaseAdapter{
         textwimage.setText(listViewItem.getWimage());
         textwind.setText(listViewItem.getWind());
         textyoil.setText(listViewItem.getYoil());
+
+        ImageView imgview = (ImageView) convertView.findViewById(R.id.imgView);
+
+        String imageUrl = listViewItem.getWimage();
+        String[] ar = imageUrl.split("/");
+        String a = ar[7].trim();
+        if(a.equals("icon1.png"))
+            imgview.setImageResource(R.drawable.icon1);
+        else if(a.equals("icon2.png")) imgview.setImageResource(R.drawable.icon2);
+        else if(a.equals("icon3.png")) imgview.setImageResource(R.drawable.icon3);
+        else if(a.equals("icon4.png")) imgview.setImageResource(R.drawable.icon4);
+        else if(a.equals("icon5.png")) imgview.setImageResource(R.drawable.icon5);
+        else if(a.equals("icon6.png")) imgview.setImageResource(R.drawable.icon6);
+        else if(a.equals("icon7.png")) imgview.setImageResource(R.drawable.icon7);
+        else if(a.equals("icon8.png")) imgview.setImageResource(R.drawable.icon8);
+        else if(a.equals("icon9.png")) imgview.setImageResource(R.drawable.icon9);
+        else if(a.equals("icon10.png")) imgview.setImageResource(R.drawable.icon10);
+        else if(a.equals("icon11.png")) imgview.setImageResource(R.drawable.icon11);
+        else if(a.equals("icon12.png")) imgview.setImageResource(R.drawable.icon12);
+        else imgview.setImageResource(R.drawable.icon1);
 
 
 
