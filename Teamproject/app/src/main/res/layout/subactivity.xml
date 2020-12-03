@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textairline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 1" />
+
+    <TextView
+        android:id="@+id/textairportCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2"
+        android:clickable="true"
+        android:onClick="showMap"/>
+
+
+    <TextView
+        android:id="@+id/textairport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textchkinrange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textestimatedDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textflightid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textgatenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/texthimidity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textmaxterm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textminterm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textremark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textscheduledDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textterminalid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textwimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textwind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+    <TextView
+        android:id="@+id/textyoil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="부분 화면 2" />
+
+
+
+</LinearLayout>

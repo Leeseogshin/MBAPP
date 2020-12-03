@@ -1,11 +1,16 @@
 package com.example.teamproject;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +60,10 @@ import org.xml.sax.InputSource;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView;
+    ListView listview ;
+    ListViewAdapter adapter;
+    int CurrentPage = 1;
+    String api;
 
     HashMap<String, Double> la = new HashMap<String, Double>();//위도
     HashMap<String, Double> lo = new HashMap<String ,Double>();//경도
@@ -64,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        CurrentPage = 1;
         //공항 좌표값 할당
         la.put("AMS",4.7674241);
         lo.put("AMS",52.3076865);
@@ -123,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         la.put("BOM",19.097403  );
         lo.put("BOM",72.874245);
 
+        la.put("KIX",34.432002);
+        lo.put("KIX",135.230394);
+
         la.put("TAE",37.463333  );
         lo.put("TAE",126.440002);
         la.put("PUS",35.1743);
@@ -133,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         lo.put("CJU",126.4892);
 
         final SwipeRefreshLayout swipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.swip_layout);
-        textView = (TextView)findViewById(R.id.textView);
+        //textView = (TextView)findViewById(R.id.textView);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -144,18 +156,63 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //String api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerArrivalsW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D&pageNo=1&numOfRows=10&from_time=0000&to_time=2400&airport=HKG&airline=KE&lang=K";
-        String api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerDeparturesW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D";
+        api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerDeparturesW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D";
+
         long mNow = System.currentTimeMillis();
         Date mReDate = new Date(mNow);
         SimpleDateFormat mFormat = new SimpleDateFormat("HHmm");
         String formatDate = mFormat.format(mReDate);
         api = api + "&from_time="+formatDate+";";
 
+
         DownloadWebpageTask task = new DownloadWebpageTask();
 
         task.execute(api);
+
+
+
+
+
+
+
+
+/*
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // get item
+                ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
+
+                // TODO : use item data.
+            }
+        }) ;*/
     }
 
+    public void minuspage(View view) {
+        if(CurrentPage==1)
+            Toast.makeText(this.getApplicationContext(),"현재 1페이지입니다.",Toast.LENGTH_SHORT).show();
+        else {
+            CurrentPage -= 1;
+            String test;
+            test = api + "&pageNo=" + CurrentPage;
+            textView = (TextView)findViewById(R.id.numtext);
+            textView.setText(Integer.toString(CurrentPage));
+            DownloadWebpageTask task = new DownloadWebpageTask();
+            task.execute(test);
+
+        }
+    }
+
+    public void pluspage(View view) {
+        String test;
+        CurrentPage += 1;
+        test = api + "&pageNo=" + CurrentPage;
+        textView = (TextView)findViewById(R.id.numtext);
+        textView.setText(Integer.toString(CurrentPage));
+
+        DownloadWebpageTask task = new DownloadWebpageTask();
+        task.execute(test);
+    }
 
 
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
@@ -207,23 +264,52 @@ public class MainActivity extends AppCompatActivity {
             } catch (XPathExpressionException e) {
                 e.printStackTrace();
             }
-            String result2 = null;
+
+            adapter = new ListViewAdapter() ;
+
+            // 리스트뷰 참조 및 Adapter달기
+            listview = (ListView) findViewById(R.id.listview1);
+            listview.setAdapter(adapter);
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView parent, View v, int position, long id) {
+                    // get item
+                    ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
+                    String airportCode = item.getAirportCode();
+                    // TODO : use item data.
+                }
+            });
+
+            // 첫 번째 아이템 추가.
+            //adapter.addItem("Box", "Account Box Black 36dp") ;
+            // 두 번째 아이템 추가.
+            //adapter.addItem("Circle", "Account Circle Black 36dp") ;
+            // 세 번째 아이템 추가.
+            //adapter.addItem("Ind", "Assignment Ind Black 36dp") ;
+
+
+
+
             for (int i = 0; i < nodeList.getLength(); i++) {
                 NodeList child = nodeList.item(i).getChildNodes();
+                String temp = "";
                 for (int j = 0; j < child.getLength(); j++) {
+
                     Node node = child.item(j);
-                    result2 += node.getNodeName();
-                    result2 += " : ";
-                    result2 += node.getTextContent();
-                    result2 += "\n";
+                    temp +=  node.getTextContent() + "@";
                 }
-                result2 += "\n";
+                String[] ar = temp.split("@");
+                if(ar.length==10)
+                    adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9]);
+                else
+                    adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9],ar[10],
+                            ar[11],ar[12],ar[13],ar[14],ar[15]);
+
             }
 
+            setListViewSize(listview);
 
 
-
-            textView.setText(result2);
         }
 
         private String downloadUrl(String api) throws IOException {
@@ -274,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
     }// class DownloadWebpageTask
 
     public void showMap(View view) {
-        Button b = (Button)view;
+        TextView b = (TextView)view;
         String code = b.getText().toString();
         double longitude = lo.get(code);
         double latitude = la.get(code);
@@ -285,4 +371,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void setListViewSize(ListView myListView) {
+        ListAdapter myListAdapter = myListView.getAdapter();
+        if (myListAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int size = 0; size < myListAdapter.getCount(); size++) {
+            View listItem = myListAdapter.getView(size, null, myListView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = myListView.getLayoutParams();
+        params.height = totalHeight + (myListView.getDividerHeight() * (myListAdapter.getCount() - 1));
+        myListView.setLayoutParams(params);
+
+    }
+
+
+
 }
