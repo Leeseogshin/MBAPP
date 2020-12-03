@@ -4,60 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
+    tools:context=".MainActivity">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swip_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/Banner"
-        android:text="도착편 확인"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        android:background="#2196F3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
-        android:id="@+id/textView"
-        android:textSize="25sp"
-        android:textColor="#FFFFFF"
-        android:background="#3F51B5"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView2"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView3"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView4"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                android:id="@+id/textView"/>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/prev"
-        android:text="이전"
-        android:onClick="prevButton"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/next"
-        android:text="다음"
-        android:onClick="showMap"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="Messaging"
-        android:text="메세지 보내기" />
 
 </LinearLayout>
