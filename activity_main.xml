@@ -4,53 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity"
     android:orientation="vertical">
-    <TextView
+
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/Banner"
-        android:text="도착편 확인"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        android:background="#2196F3"/>
-    <TextView
+        android:layout_height="195dp"
+        app:srcCompat="@drawable/airportlogin" />
+
+    <EditText
+        android:id="@+id/et_id"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="45dp"
+        android:hint="아이디"
+        android:textSize="12dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="50dp"
-        android:id="@+id/textView"
-        android:textSize="25sp"
-        android:textColor="#FFFFFF"
-        android:background="#3F51B5"/>
-    <TextView
+        android:layout_marginEnd="70dp" />
+
+    <EditText
+        android:id="@+id/et_pass"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView2"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView3"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/textView4"
-        android:textSize="20sp"
-        android:background="#E3E3E3"/>
+        android:layout_height="45dp"
+        android:hint="비밀번호"
+        android:textSize="12dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp" />
+
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/prev"
-        android:text="이전"
-        android:onClick="prevButton"/>
-    <Button
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:background="#063A95"
+        android:textColor="#ffffff"
+        android:text="로그인" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/next"
-        android:text="다음"
-        android:onClick="nextButton"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:background="#ffffff"
+            android:text="아이디찾기" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="비밀번호 찾기" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="회원가입" />
+    </LinearLayout>
 
 </LinearLayout>
