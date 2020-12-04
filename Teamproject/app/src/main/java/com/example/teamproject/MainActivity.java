@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     ListViewAdapter adapter;
     int CurrentPage = 1;
     String api;
+    String[] ar;
 
     HashMap<String, Double> la = new HashMap<String, Double>();//위도
     HashMap<String, Double> lo = new HashMap<String ,Double>();//경도
@@ -155,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //String api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerArrivalsW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D&pageNo=1&numOfRows=10&from_time=0000&to_time=2400&airport=HKG&airline=KE&lang=K";
-        api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerDeparturesW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D";
+        //String api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerArrivalsW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D&airport=HKG&airline=KE&lang=K";
+        api = "http://openapi.airport.kr/openapi/service/StatusOfPassengerWeahter/getPassengerArrivalsW?ServiceKey=URTjt6uEUH9SIYq1H3zFtGNg65d2oeLiJGJPk0t1ZcEtUJIw4x4BjRSXIxtM8ZZLI9xiQswQyiD0Us3lNCAaHQ%3D%3D";
 
         long mNow = System.currentTimeMillis();
         Date mReDate = new Date(mNow);
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                     Node node = child.item(j);
                     temp +=  node.getTextContent() + "@";
                 }
-                String[] ar = temp.split("@");
+                ar = temp.split("@");
                 if(ar.length==10)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9]);
                 else if (ar.length==16)
@@ -392,7 +393,4 @@ public class MainActivity extends AppCompatActivity {
         myListView.setLayoutParams(params);
 
     }
-
-
-
 }

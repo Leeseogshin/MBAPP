@@ -1,10 +1,12 @@
 package com.example.teamproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class ListViewAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
+        final Intent intent=new Intent(context, MainActivity2.class);
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
@@ -42,13 +45,13 @@ public class ListViewAdapter extends BaseAdapter{
         TextView textflightid = (TextView) convertView.findViewById(R.id.textflightid) ;
         TextView textterminalid = (TextView) convertView.findViewById(R.id.textterminalid);
         TextView textairline = (TextView) convertView.findViewById(R.id.textairline);
-        TextView textairport = (TextView) convertView.findViewById(R.id.textairport);
+        final TextView textairport = (TextView) convertView.findViewById(R.id.textairport);
         TextView textairportCode = (TextView) convertView.findViewById(R.id.textairportCode);
-        TextView textchkinrange = (TextView) convertView.findViewById(R.id.textchkinrange);
-        TextView textestimatedDateTime = (TextView) convertView.findViewById(R.id.textestimatedDateTime);
-        TextView textgatenumber = (TextView) convertView.findViewById(R.id.textgatenumber);
+        final TextView textchkinrange = (TextView) convertView.findViewById(R.id.textchkinrange);
+        final TextView textestimatedDateTime = (TextView) convertView.findViewById(R.id.textestimatedDateTime);
+        final TextView textgatenumber = (TextView) convertView.findViewById(R.id.textgatenumber);
         TextView texthimidity = (TextView) convertView.findViewById(R.id.texthimidity);
-        TextView textmaxterm = (TextView) convertView.findViewById(R.id.textmaxterm);
+        final TextView textmaxterm = (TextView) convertView.findViewById(R.id.textmaxterm);
         TextView textminterm = (TextView) convertView.findViewById(R.id.textminterm);
         TextView textremark = (TextView) convertView.findViewById(R.id.textremark);
         TextView textscheduledDateTime = (TextView) convertView.findViewById(R.id.textscheduledDateTime);
@@ -96,11 +99,21 @@ public class ListViewAdapter extends BaseAdapter{
         else if(a.equals("icon12.png")) imgview.setImageResource(R.drawable.icon12);
         else imgview.setImageResource(R.drawable.icon1);
 
+        Button button=convertView.findViewById(R.id.Messaging);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent.putExtra("result2", textairport.getText());
+                intent.putExtra("result3", textchkinrange.getText());
+                intent.putExtra("result4", textgatenumber.getText());
+                intent.putExtra("result5", textmaxterm.getText());
+                intent.putExtra("result6", textestimatedDateTime.getText());
+                context.startActivity(intent);
+            }
 
-
+        });
         return convertView;
     }
-
 
     // 지정한 위치(position)에 있는 데이터와 관계된 아이템(row)의 ID를 리턴. : 필수 구현
     @Override
