@@ -59,36 +59,22 @@ public class ListViewAdapter extends BaseAdapter{
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ListViewItem listViewItem = listViewItemList.get(position);
 
-        String estTime = "", schTime = "";
-
         // 아이템 내 각 위젯에 데이터 반영
         textflightid.setText(listViewItem.getFlightid());
-        textterminalid.setText("최저 기온 : " + listViewItem.getTerminalid() + "도");
+        textterminalid.setText(listViewItem.getTerminalid() + "도");
         textairline.setText(listViewItem.getAirline());
-        textairport.setText("공항 : " + listViewItem.getAirport());
-        textairportCode.setText("공항 코드 : " + listViewItem.getAirportCode());
-        textchkinrange.setText("체크인 카운터 : " + listViewItem.getChkinrange());
-        estTime += listViewItem.getEstimatedDateTime().charAt(0);
-        estTime += listViewItem.getEstimatedDateTime().charAt(1);
-        estTime += "시 ";
-        estTime += listViewItem.getEstimatedDateTime().charAt(2);
-        estTime += listViewItem.getEstimatedDateTime().charAt(3);
-        estTime += "분";
-        textestimatedDateTime.setText("변경 시간 : " + estTime);
-        textgatenumber.setText("탑승구 : " + listViewItem.getGatenumber());
-        texthimidity.setText("상태 : " + listViewItem.getHimidity());
-        schTime += listViewItem.getMaxterm().charAt(0);
-        schTime += listViewItem.getMaxterm().charAt(1);
-        schTime += "시 ";
-        schTime += listViewItem.getMaxterm().charAt(2);
-        schTime += listViewItem.getMaxterm().charAt(3);
-        schTime += "분";
-        textmaxterm.setText("예정 시간 : " + schTime);
-        textminterm.setText("터미널 : " + listViewItem.getMinterm());
-        textremark.setText("습도 : " + listViewItem.getRemark() + "%");
-        textscheduledDateTime.setText("최고 기온 : " + listViewItem.getScheduledDateTime() + "도");
-        textwind.setText("풍속 : " + listViewItem.getWind() + "m/s");
-        textyoil.setText("요일 : " + listViewItem.getYoil() + "요일");
+        textairport.setText(listViewItem.getAirport());
+        textairportCode.setText(listViewItem.getAirportCode());
+        textchkinrange.setText(listViewItem.getChkinrange());
+        textestimatedDateTime.setText(listViewItem.getEstimatedDateTime());
+        textgatenumber.setText(listViewItem.getGatenumber());
+        texthimidity.setText(listViewItem.getHimidity());
+        textmaxterm.setText(listViewItem.getMaxterm());
+        textminterm.setText(listViewItem.getMinterm());
+        textremark.setText(listViewItem.getRemark() + "%");
+        textscheduledDateTime.setText(listViewItem.getScheduledDateTime() + "도");
+        textwind.setText(listViewItem.getWind() + "m/s");
+        textyoil.setText(listViewItem.getYoil() + "요일");
 
         ImageView imgview = (ImageView) convertView.findViewById(R.id.imgView);
 
