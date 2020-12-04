@@ -270,15 +270,7 @@ public class MainActivity extends AppCompatActivity {
             // 리스트뷰 참조 및 Adapter달기
             listview = (ListView) findViewById(R.id.listview1);
             listview.setAdapter(adapter);
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView parent, View v, int position, long id) {
-                    // get item
-                    ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
-                    String airportCode = item.getAirportCode();
-                    // TODO : use item data.
-                }
-            });
+
 
             // 첫 번째 아이템 추가.
             //adapter.addItem("Box", "Account Box Black 36dp") ;
@@ -301,13 +293,23 @@ public class MainActivity extends AppCompatActivity {
                 String[] ar = temp.split("@");
                 if(ar.length==10)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9]);
-                else
+                else if (ar.length==16)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9],ar[10],
                             ar[11],ar[12],ar[13],ar[14],ar[15]);
 
             }
 
             setListViewSize(listview);
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView parent, View v, int position, long id) {
+                    // get item
+                    ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
+                    String airportCode = item.getAirportCode();
+                    // TODO : use item data.
+                }
+            });
 
 
         }
