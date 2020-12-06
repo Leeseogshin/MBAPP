@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                                 //레지스트에서 로그인화면으로이동 추후에 Main-> Login을 새로만들면 이동하기
-                                Intent intent = new Intent(MainActivity.this, Airport.class);
+                                Intent intent = new Intent(MainActivity.this, input1.class);
                                 intent.putExtra("userID",userID);
                                 intent.putExtra("userPass",userPass);
                                 startActivity(intent);
@@ -78,5 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 queue.add(loginRequest);
             }
         });
+    }
+
+    public void minuspage(View view) {
+    }
+
+    public void pluspage(View view) {
     }
 }
