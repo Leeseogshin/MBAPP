@@ -231,7 +231,7 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/border1"
-            android:text="항공"
+            android:text="공항"
             android:textAlignment="center"/>
 
 
@@ -415,16 +415,6 @@
             android:textSize="20dp"
             android:background="@drawable/border1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:background="@drawable/border1"
-            android:text="날씨" />
-
         <ImageView
             android:background="@drawable/border1"
             android:layout_height="match_parent"
@@ -451,18 +441,6 @@
             android:text="메세지 보내기"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textSize="20dp" />
-
-        <!--<Button
-            android:id="@+id/Map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFFFFFFF"
-            android:backgroundTint="#00FFFFFF"
-            android:onClick="showMap"
-            android:text="지도 보기"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:textSize="20dp" />-->
 
     </TableRow>
 
