@@ -387,6 +387,7 @@ public class MainActivity extends AppCompatActivity {
             View listItem = myListAdapter.getView(size, null, myListView);
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
+            totalHeight += 50;
         }
 
         ViewGroup.LayoutParams params = myListView.getLayoutParams();
