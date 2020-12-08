@@ -49,7 +49,9 @@
                 android:textAlignment="textEnd"
                 android:background="#3F51B5"
                 android:textColor="#FFFFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:onClick="showMap"
+                android:clickable="true"/>
 
         </TableRow>
 
@@ -450,7 +452,7 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textSize="20dp" />
 
-        <Button
+        <!--<Button
             android:id="@+id/Map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -460,7 +462,7 @@
             android:onClick="showMap"
             android:text="지도 보기"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:textSize="20dp" />
+            android:textSize="20dp" />-->
 
     </TableRow>
 

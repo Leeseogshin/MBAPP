@@ -294,6 +294,9 @@ public class MainActivity extends AppCompatActivity {
                 ar = temp.split("@");
                 if(ar.length==10)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9]);
+                else if (ar.length==15)
+                    adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9],"미정",ar[10],
+                            ar[11],ar[12],ar[13],ar[14]);
                 else if (ar.length==16)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9],ar[10],
                             ar[11],ar[12],ar[13],ar[14],ar[15]);
