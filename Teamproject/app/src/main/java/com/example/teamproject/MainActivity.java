@@ -66,16 +66,19 @@ public class MainActivity extends AppCompatActivity {
     String api;
     String[] ar;
 
+
     HashMap<String, Double> la = new HashMap<String, Double>();//위도
     HashMap<String, Double> lo = new HashMap<String ,Double>();//경도
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {    
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CurrentPage = 1;
         //공항 좌표값 할당
+        la.put("SEA",4.7674241);
+        lo.put("AMS",52.3076865);
         la.put("AMS",4.7674241);
         lo.put("AMS",52.3076865);
         la.put("KTM",27.6967);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         lo.put("AKL",174.7883);
         lo.put("KHH",120.2033);
         la.put("KHH",22.3438);
-        la.put("TPE",-25.076068);
+        la.put("TPE",25.076068);
         lo.put("TPE",121.231625);
         la.put("CPH",-55.620750);
         lo.put("CPH",12.650462);
@@ -169,13 +172,6 @@ public class MainActivity extends AppCompatActivity {
         DownloadWebpageTask task = new DownloadWebpageTask();
 
         task.execute(api);
-
-
-
-
-
-
-
 
 /*
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -291,8 +287,10 @@ public class MainActivity extends AppCompatActivity {
                     Node node = child.item(j);
                     temp +=  node.getTextContent() + "@";
                 }
+
+
                 ar = temp.split("@");
-                if(ar.length==10)
+                if(ar.length==8)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9]);
                 else if (ar.length==15)
                     adapter.addItem(ar[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6],ar[7],ar[8],ar[9],"미정",ar[10],
